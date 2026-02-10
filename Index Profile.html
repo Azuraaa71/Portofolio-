@@ -92,8 +92,38 @@
         }
 
         .btn-icon {
-            padding: 12px 16px;
-            font-size: 16px;
+            padding: 0;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            font-size: 20px;
+            background: rgba(232, 93, 4, 0.15) !important;
+            border: 1.5px solid var(--color-accent) !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+            font-weight: normal !important;
+            font-family: inherit !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        .btn-icon:hover {
+            background: var(--color-accent) !important;
+            color: white;
+            transform: scale(1.1) rotate(20deg) !important;
+            box-shadow: 0 8px 24px rgba(232, 93, 4, 0.3);
+        }
+
+        [data-theme="dark"] .btn-icon {
+            background: rgba(255, 107, 53, 0.15) !important;
+            border-color: var(--color-accent) !important;
+        }
+
+        [data-theme="dark"] .btn-icon:hover {
+            background: var(--color-accent) !important;
+            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.4);
         }
 
         /* Back to Top Button */
