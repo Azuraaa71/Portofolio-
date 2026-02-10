@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Satriya Aji Tri Baskoro | Trader Forex</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;600&family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root {
+            --color-bg: #FAFAF8;
+            --color-text: #1A1A1A;
+            --color-accent: #E85D04;
+            --color-secondary: #DC2F02;
+            --color-border: #D4D4D0;
+            --color-light: #F5F5F3;
+            --serif: 'DM Serif Display', serif;
+            --sans: 'Manrope', sans-serif;
+            --mono: 'IBM Plex Mono', monospace;
+        }
+
+        [data-theme="dark"] {
+            --color-bg: #0A0A0A;
+            --color-text: #FAFAF8;
+            --color-accent: #FF6B35;
+            --color-secondary: #FF8C42;
+            --color-border: #2A2A2A;
+            --color-light: #1A1A1A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            z-index: 1000;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Control Buttons */
+        .controls {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            display: flex;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .btn {
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-family: var(--mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: var(--color-secondary);
+            transform: translateY(-2px);
+        }
+
+        .btn-icon {
+            padding: 12px 16px;
+            font-size: 16px;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--color-accent);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--color-secondary);
+            transform: translateY(-5px);
+        }
+
+        /* Header */
+        header {
+            padding: 80px 0 60px;
+            border-bottom: 3px solid var(--color-text);
+            position: relative;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 60px;
+        }
+
+        .name-block {
+            flex: 1;
+        }
+
+        h1 {
+            font-family: var(--serif);
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            line-height: 0.95;
+            margin-bottom: 16px;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .title {
+            font-family: var(--mono);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .contact-info {
+            text-align: right;
+            font-family: var(--mono);
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        .contact-info a {
+            color: var(--color-text);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            border-bottom-color: var(--color-accent);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--color-border);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        section:nth-child(2) { animation-delay: 0.1s; }
+        section:nth-child(3) { animation-delay: 0.2s; }
+        section:nth-child(4) { animation-delay: 0.3s; }
+        section:nth-child(5) { animation-delay: 0.4s; }
+        section:nth-child(6) { animation-delay: 0.5s; }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .section-number {
+            font-family: var(--mono);
+            font-size: 14px;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        h2 {
+            font-family: var(--serif);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1;
+        }
+
+        /* Statistics Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 30px;
+            background: var(--color-light);
+            border: 2px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-family: var(--serif);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--color-accent);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-family: var(--mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-text);
+            opacity: 0.7;
+        }
+
+        /* About */
+        .about-content {
+            font-size: 20px;
+            line-height: 1.8;
+            max-width: 800px;
+            font-weight: 300;
+        }
+
+        .about-content strong {
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        /* Experience */
+        .experience-item {
+            margin-bottom: 60px;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+        }
+
+        .experience-date {
+            font-family: var(--mono);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-accent);
+            padding-top: 8px;
+        }
+
+        .experience-details h3 {
+            font-family: var(--sans);
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .experience-company {
+            font-family: var(--mono);
+            font-size: 14px;
+            margin-bottom: 16px;
+            color: #666;
+        }
+
+        [data-theme="dark"] .experience-company {
+            color: #999;
+        }
+
+        .experience-description {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .experience-description ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-description li {
+            padding-left: 24px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .experience-description li:before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+        }
+
+        .skill-category h3 {
+            font-family: var(--mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-tag {
+            background: var(--color-light);
+            border: 1px solid var(--color-border);
+            padding: 10px 18px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--color-text);
+            color: var(--color-bg);
+            border-color: var(--color-text);
+            transform: translateY(-2px);
+        }
+
+        /* Education */
+        .education-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .education-date {
+            font-family: var(--mono);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-accent);
+            padding-top: 8px;
+        }
+
+        .education-details h3 {
+            font-family: var(--sans);
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .education-school {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        [data-theme="dark"] .education-school {
+            color: #999;
+        }
+
+        .education-description {
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            font-family: var(--mono);
+            font-size: 12px;
+            color: #999;
+            letter-spacing: 1px;
+        }
+
+        .footer-accent {
+            width: 60px;
+            height: 3px;
+            background: var(--color-accent);
+            margin: 0 auto 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+
+            .controls {
+                top: 20px;
+                right: 20px;
+                flex-direction: column;
+            }
+
+            .btn {
+                padding: 10px 16px;
+                font-size: 11px;
+            }
+
+            header {
+                padding: 60px 0 40px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .contact-info {
+                text-align: left;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 16px;
+                margin-bottom: 40px;
+            }
+
+            .experience-item,
+            .education-item {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .controls,
+            .back-to-top,
+            .grain {
+                display: none !important;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+
+            section {
+                page-break-inside: avoid;
+                border-bottom: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain"></div>
+    
+    <!-- Control Buttons -->
+    <div class="controls">
+        <button class="btn" onclick="downloadPDF()">📄 Download PDF</button>
+        <button class="btn btn-icon" onclick="toggleDarkMode()" id="themeToggle">🌙</button>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <div id="cv-content">
+        <header>
+            <div class="container">
+                <div class="header-content">
+                    <div class="name-block">
+                        <h1>SATRIYA AJI TRI BASKORO</h1>
+                        <p class="title">Trader Forex</p>
+                    </div>
+                    <div class="contact-info">
+                        <div><a href="mailto:satriyaajib31@gmail.com">satriyaajib31@gmail.com</a></div>
+                        <div><a href="tel:+6287704633053">0877-0463-3053</a></div>
+                        <div><a href="https://github.com/Azuraaa71" target="_blank">GitHub: Azuraaa71</a></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="statistik">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">[01]</span>
+                    <h2>Statistik</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="3">0</div>
+                        <div class="stat-label">Tahun Pengalaman</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="2">0</div>
+                        <div class="stat-label">Posisi Aktif</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="1000">0+</div>
+                        <div class="stat-label">Trades Analyzed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="3">0</div>
+                        <div class="stat-label">Asset Classes</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tentang">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">[02]</span>
+                    <h2>Tentang Saya</h2>
+                </div>
+                <div class="about-content">
+                    <p>Saya adalah <strong>profesional muda</strong> dengan passion dalam dunia keuangan dan investasi. Dengan latar belakang yang kuat dalam bidang <strong>finance</strong>, saya telah mengembangkan keahlian dalam <strong>investasi dan analisis pasar</strong>.</p>
+                    <p style="margin-top: 24px;">Saat ini saya fokus pada <strong>investasi berjangka</strong>, dengan tujuan untuk <strong>menjadi investment banker</strong>. Saya percaya pada analisis yang mendalam, manajemen risiko yang ketat, dan keputusan investasi yang terukur untuk mencapai hasil optimal.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pengalaman">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">[03]</span>
+                    <h2>Pengalaman</h2>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-date">
+                        Feb 2024 — Sekarang
+                    </div>
+                    <div class="experience-details">
+                        <h3>Risk Manager</h3>
+                        <p class="experience-company">Equity World Futures</p>
+                        <div class="experience-description">
+                            <p>Menghitung risiko setiap trade yang dieksekusi oleh perusahaan untuk meminimalkan potensi kerugian.</p>
+                            <ul>
+                                <li>Melakukan analisis dan evaluasi risiko pada setiap eksekusi trading</li>
+                                <li>Mengimplementasikan strategi mitigasi risiko yang efektif</li>
+                                <li>Berhasil mengurangi risiko kerugian perusahaan secara signifikan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-date">
+                        Jan 2022 — Sekarang
+                    </div>
+                    <div class="experience-details">
+                        <h3>Teknikal Analisis</h3>
+                        <p class="experience-company">New York Trader Society</p>
+                        <div class="experience-description">
+                            <p>Memberikan pandangan dan analisis teknikal kepada komunitas terhadap berbagai aset investasi.</p>
+                            <ul>
+                                <li>Melakukan analisis teknikal untuk emas, saham, dan currency</li>
+                                <li>Memberikan insight dan rekomendasi trading kepada komunitas</li>
+                                <li>Berbagi strategi dan edukasi trading kepada member komunitas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="keahlian">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">[04]</span>
+                    <h2>Keahlian</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Trading & Analysis</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">Technical Analysis</span>
+                            <span class="skill-tag">Fundamental Analysis</span>
+                            <span class="skill-tag">Risk Management</span>
+                            <span class="skill-tag">Chart Patterns</span>
+                            <span class="skill-tag">Market Analysis</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools & Platform</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">MetaTrader 4/5</span>
+                            <span class="skill-tag">TradingView</span>
+                            <span class="skill-tag">Bloomberg Terminal</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Soft Skills</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag">Decision Making</span>
+                            <span class="skill-tag">Analytical Thinking</span>
+                            <span class="skill-tag">Risk Assessment</span>
+                            <span class="skill-tag">Strategic Planning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pendidikan">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">[05]</span>
+                    <h2>Pendidikan</h2>
+                </div>
+
+                <div class="education-item">
+                    <div class="education-date">
+                        2023 — 2026
+                    </div>
+                    <div class="education-details">
+                        <h3>SMK - Teknik Jaringan & Komputer</h3>
+                        <p class="education-school">SMK Antartika 2 Sidoarjo</p>
+                        <p class="education-description">Menempuh pendidikan kejuruan dengan fokus pada teknologi jaringan dan komputer, sambil mengembangkan karir di bidang trading dan investasi.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <div class="footer-accent"></div>
+                <p>© 2026 Satriya Aji Tri Baskoro. Dibuat dengan passion.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const themeButton = document.getElementById('themeToggle');
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeButton.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Load saved theme
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const themeButton = document.getElementById('themeToggle');
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+        });
+
+        // Download PDF Function
+        function downloadPDF() {
+            const element = document.getElementById('cv-content');
+            const opt = {
+                margin: 0.5,
+                filename: 'CV-Satriya-Aji-Tri-Baskoro.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+            
+            // Temporarily hide controls for PDF
+            const controls = document.querySelector('.controls');
+            const backToTop = document.querySelector('.back-to-top');
+            controls.style.display = 'none';
+            backToTop.style.display = 'none';
+            
+            html2pdf().set(opt).from(element).save().then(() => {
+                controls.style.display = 'flex';
+                backToTop.style.display = 'flex';
+            });
+        }
+
+        // Back to Top Button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Smooth scroll untuk navigasi
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animated Counter for Statistics
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current) + (target >= 1000 ? '+' : '');
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target + (target >= 1000 ? '+' : '');
+                }
+            };
+
+            updateCounter();
+        }
+
+        // Intersection Observer untuk animasi scroll dan counter
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Animate counters when stats section is visible
+                    if (entry.target.id === 'statistik') {
+                        const counters = entry.target.querySelectorAll('.stat-number');
+                        counters.forEach(counter => {
+                            if (!counter.classList.contains('animated')) {
+                                counter.classList.add('animated');
+                                animateCounter(counter);
+                            }
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe semua section
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
