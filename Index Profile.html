@@ -7,7 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@300;400;600&family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         :root {
             --color-bg: #FAFAF8;
@@ -539,7 +538,6 @@
     
     <!-- Control Buttons -->
     <div class="controls">
-        <button class="btn" onclick="downloadPDF()">📄 Download PDF</button>
         <button class="btn btn-icon" onclick="toggleDarkMode()" id="themeToggle">🌙</button>
     </div>
 
@@ -734,29 +732,6 @@
             document.documentElement.setAttribute('data-theme', savedTheme);
             themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
         });
-
-        // Download PDF Function
-        function downloadPDF() {
-            const element = document.getElementById('cv-content');
-            const opt = {
-                margin: 0.5,
-                filename: 'CV-Satriya-Aji-Tri-Baskoro.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true },
-                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-            };
-            
-            // Temporarily hide controls for PDF
-            const controls = document.querySelector('.controls');
-            const backToTop = document.querySelector('.back-to-top');
-            controls.style.display = 'none';
-            backToTop.style.display = 'none';
-            
-            html2pdf().set(opt).from(element).save().then(() => {
-                controls.style.display = 'flex';
-                backToTop.style.display = 'flex';
-            });
-        }
 
         // Back to Top Button
         const backToTopButton = document.getElementById('backToTop');
