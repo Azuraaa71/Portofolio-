@@ -70,12 +70,23 @@ body {
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
+.scroll-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
+    width: 0%;
+    transition: width 0.1s ease;
+}
+
 .nav-list {
     display: flex;
     list-style: none;
     gap: 40px;
     margin: 0;
     padding: 0;
+    align-items: center;
 }
 
 .nav-list a {
@@ -112,6 +123,38 @@ body {
 .btn-dark-mode:hover {
     border-color: var(--color-accent);
     transform: scale(1.05);
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    gap: 6px;
+    z-index: 1001;
+}
+
+.hamburger-menu span {
+    width: 25px;
+    height: 3px;
+    background: var(--color-text);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.hamburger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(10px, 10px);
+}
+
+.hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
 }
 
 /* Control Buttons (Legacy - kept for backward compat) */
@@ -172,7 +215,7 @@ header {
 
 .header-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-start;
     gap: 60px;
 }
@@ -199,23 +242,7 @@ h1 {
     font-weight: 600;
 }
 
-.contact-info {
-    text-align: right;
-    font-family: var(--mono);
-    font-size: 13px;
-    line-height: 2;
-}
 
-.contact-info a {
-    color: var(--color-text);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s ease;
-}
-
-.contact-info a:hover {
-    border-bottom-color: var(--color-accent);
-}
 
 /* Sections */
 section {
@@ -403,6 +430,17 @@ h2 {
     line-height: 1.7;
 }
 
+/* Performa Section */
+.performa-description {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(26, 26, 26, 0.7);
+}
+
+[data-theme="dark"] .performa-description {
+    color: rgba(250, 250, 248, 0.7);
+}
+
 /* Certificates */
 .certificates-grid {
     display: grid;
@@ -450,6 +488,27 @@ footer {
     margin: 0 auto 20px;
 }
 
+.footer-contact {
+    margin-bottom: 20px;
+    font-size: 13px;
+    line-height: 2;
+}
+
+.footer-contact a {
+    color: var(--color-text);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+[data-theme="dark"] .footer-contact a {
+    color: var(--color-text);
+}
+
+.footer-contact a:hover {
+    border-bottom-color: var(--color-accent);
+}
+
 /* Animations */
 @keyframes fadeInUp {
     from {
@@ -480,13 +539,66 @@ footer {
         height: 70px;
     }
 
+    .hamburger-menu {
+        display: flex;
+        order: 1;
+    }
+
     .nav-list {
-        gap: 20px;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--color-bg);
+        border-bottom: 1px solid var(--color-border);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+        padding: 10px;
+        max-height: 0;
+        overflow: hidden;
+        visibility: hidden;
+        opacity: 0;
+        transition: max-height 0.3s ease, visibility 0.3s ease, opacity 0.3s ease;
+    }
+
+    .nav-list.active {
+        max-height: 280px;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .nav-list li {
+        width: 100%;
+        text-align: center;
     }
 
     .nav-list a {
         font-size: 11px;
         letter-spacing: 0.5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 10px 6px;
+        border: 1px solid var(--color-border);
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .nav-list a:hover {
+        background: var(--color-light);
+        border-color: var(--color-accent);
+    }
+
+    .nav-icon {
+        font-size: 16px;
+        display: block;
+    }
+
+    .btn-dark-mode {
+        order: 2;
     }
 
     .btn-dark-mode {

@@ -17,12 +17,18 @@
     
     <!-- Navigation Menu -->
     <nav class="nav-menu">
-        <ul class="nav-list">
-            <li><a href="#tentang">Tentang</a></li>
-            <li><a href="#pengalaman">Pengalaman</a></li>
-            <li><a href="#keahlian">Keahlian</a></li>
-            <li><a href="#sertifikat">Sertifikat</a></li>
-            <li><a href="#performa">Performa</a></li>
+        <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+        <button class="hamburger-menu" id="hamburgerMenu" title="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-list" id="navList">
+            <li><a href="#tentang"><span class="nav-icon">👤</span>Tentang</a></li>
+            <li><a href="#pengalaman"><span class="nav-icon">💼</span>Pengalaman</a></li>
+            <li><a href="#keahlian"><span class="nav-icon">🎯</span>Keahlian</a></li>
+            <li><a href="#sertifikat"><span class="nav-icon">📜</span>Sertifikat</a></li>
+            <li><a href="#performa"><span class="nav-icon">📊</span>Performa</a></li>
         </ul>
         <button class="btn-dark-mode" onclick="toggleDarkMode()" id="themeToggle" title="Toggle dark mode">🌙</button>
     </nav>
@@ -37,11 +43,6 @@
                     <div class="name-block">
                         <h1>SATRIYA AJI TRI BASKORO</h1>
                         <p class="title">Trader Forex</p>
-                    </div>
-                    <div class="contact-info">
-                        <div><a href="mailto:satriyaajib31@gmail.com">satriyaajib31@gmail.com</a></div>
-                        <div><a href="tel:+6287704633053">0877-0463-3053</a></div>
-                        <div><a href="https://github.com/Azuraaa71" target="_blank">GitHub: Azuraaa71</a></div>
                     </div>
                 </div>
             </div>
@@ -118,8 +119,8 @@
                             <span class="skill-tag">Technical Analysis</span>
                             <span class="skill-tag">Fundamental Analysis</span>
                             <span class="skill-tag">Risk Management</span>
-                            <span class="skill-tag">Chart Patterns</span>
                             <span class="skill-tag">Market Analysis</span>
+                            <span class="skill-tag">Quantitative Analysis</span>
                         </div>
                     </div>
                     <div class="skill-category">
@@ -128,6 +129,8 @@
                             <span class="skill-tag">MetaTrader 4/5</span>
                             <span class="skill-tag">TradingView</span>
                             <span class="skill-tag">Bloomberg Terminal</span>
+                            <span class="skill-tag">OrderBook</span>
+                            <span class="skill-tag">Investing.com</span>
                         </div>
                     </div>
                     <div class="skill-category">
@@ -186,13 +189,18 @@
                     <span class="section-number">[06]</span>
                     <h2>Performa</h2>
                 </div>
-                <p style="font-size: 16px; line-height: 1.7; color: rgba(26, 26, 26, 0.7);">Data performa trading sedang diperbarui. Silakan kembali lagi.</p>
+                <p class="performa-description">Data performa trading sedang diperbarui. Silakan kembali lagi.</p>
             </div>
         </section>
 
         <footer>
             <div class="container">
                 <div class="footer-accent"></div>
+                <div class="footer-contact">
+                    <div><a href="mailto:satriyaajib31@gmail.com">satriyaajib31@gmail.com</a></div>
+                    <div><a href="tel:+6287704633053">0877-0463-3053</a></div>
+                    <div><a href="https://github.com/Azuraaa71" target="_blank">GitHub: Azuraaa71</a></div>
+                </div>
                 <p>© 2026 Satriya Aji Tri Baskoro. Dibuat dengan passion.</p>
             </div>
         </footer>
